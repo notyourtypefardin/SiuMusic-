@@ -1,0 +1,1201 @@
+SU MUSIC — ULTIMATE LIQUID GLASS EXPERIENCE
+
+Master UI Transformation Specification · Native Android · Kotlin · Jetpack Compose
+
+YOUR ROLE
+
+Act as an elite multidisciplinary team consisting of a principal Apple-inspired interface designer, senior Android graphics engineer, motion-design director, 3D interaction specialist, haptics engineer, music-product designer, accessibility engineer, and Android performance optimization expert.
+
+Your mission is to transform the EXISTING Su Music Android application into an exceptionally polished, luxurious, cinematic, immersive, three-dimensional Liquid Glass music experience.
+
+The quality bar is the finest mobile interface craftsmanship: extraordinary visual hierarchy, refined typography, realistic translucent surfaces, sophisticated motion, precise tactile feedback, seamless transitions, and obsessive attention to detail.
+
+This is a redesign of the existing application, not a new project.
+
+PRIMARY OBJECTIVE: REDESIGN THE ENTIRE EXISTING UI FIRST.
+
+Do not merely generate a concept, a mockup, a design description, or a static prototype. Inspect the existing project and implement the redesign directly in its actual Kotlin and Jetpack Compose codebase.
+
+Preserve all existing working functionality, navigation, audio-player logic, data models, permissions, storage, dependencies, and project configuration unless a specific change is essential for the UI and is demonstrably safe.
+
+Do not delete working features. Do not replace real functionality with decorative mock data. Do not rewrite the entire application unnecessarily. Do not create a second disconnected UI alongside the existing application.
+
+If a feature is already implemented, retain and integrate it. If a feature does not yet exist, design its interface and clearly distinguish a functional interaction from a placeholder.
+
+---
+
+01 — THE DESIGN VISION
+
+Create an original Su Music visual identity inspired by the material sophistication, spatial depth, fluid surfaces, translucency, and motion language associated with Apple's Liquid Glass design direction.
+
+Do not claim to reproduce proprietary or unreleased iOS 27 internals. Reproduce the desired visual qualities through original, native Android implementation.
+
+The finished application should feel like a premium audio instrument crafted from black crystal, smoked glass, polished obsidian, liquid reflections, and precision-machined metal.
+
+The design should communicate:
+
+- Luxury.
+- Exclusivity.
+- Precision.
+- Depth.
+- Fluidity.
+- Calm confidence.
+- Cinematic atmosphere.
+- Exceptional craftsmanship.
+- Immediate responsiveness.
+- Premium music-listening immersion.
+
+The application must look expensive without relying on excessive gold accents, clutter, enormous gradients, unnecessary glowing borders, or cheap neon effects.
+
+Every screen must feel like part of one coherent design system.
+
+Every animation must have a purpose, an intentional duration, and a consistent motion personality.
+
+Every interactive object must respond to the user as though it possesses physical presence.
+
+The result must remain unmistakably Su Music rather than a generic imitation of another application.
+
+02 — NON-NEGOTIABLE PROJECT SAFETY RULES
+
+Before editing:
+
+1. Inspect the complete project structure and identify the existing application entry point, Compose screens, navigation, theme, components, ViewModels, audio engine, and storage implementation.
+2. Determine which screens and interactions currently work.
+3. Preserve the existing application ID, package structure, build configuration, dependency versions, and signing configuration.
+4. Establish a clear list of files that need UI changes.
+5. Reuse existing working components whenever practical.
+6. Avoid touching audio playback, permissions, database schemas, or background-service logic unless the UI integration requires it.
+7. Make changes incrementally and check for compilation errors.
+8. Do not erase user data, reset the database, or remove existing project files.
+9. Do not stop after writing a plan. Implement the redesign.
+10. If a proposed visual effect cannot be implemented reliably on Android, build the closest high-quality native alternative instead of faking a broken interaction.
+
+If version control or a project snapshot is available, create a safe checkpoint before major changes.
+
+At completion, report exactly which screens were redesigned, which animations were implemented, which features were preserved, which tests passed, and which limitations remain.
+
+03 — VISUAL DESIGN SYSTEM
+
+3.1 Core palette
+
+Create a consistent palette using these starting values. Adjust individual shades when necessary for legibility and visual balance.
+
+- Absolute black: #030305
+- Primary background: #07080B
+- Secondary background: #0C0D12
+- Elevated surface: #12141B
+- Smoked glass: #171922 with adjustable transparency
+- Primary text: #F7F7FA
+- Secondary text: #A4A7B3
+- Tertiary text: #727685
+- Primary glass highlight: translucent white
+- Cool reflective accent: restrained silver
+- Optional premium accent: muted platinum
+- Optional musical accent: subtle electric violet or deep blue, used selectively
+- Destructive action: accessible red
+- Success indication: restrained green
+
+Do not make the whole application purple, blue, or gold. Black and translucent glass must remain dominant.
+
+Avoid making every card equally bright. Establish depth through differences in surface luminance, blur, transparency, edge reflection, elevation, and contrast.
+
+Use semantic color tokens instead of scattering arbitrary hexadecimal values throughout the code.
+
+Support system light/dark configuration where appropriate, but make the application's intended premium dark appearance its primary experience.
+
+3.2 Background environment
+
+Create a sophisticated dark background with layered atmospheric depth.
+
+Use a combination of:
+
+- Near-black foundational color.
+- Subtle radial illumination behind important content.
+- Low-contrast ambient gradients.
+- Soft, restrained reflections.
+- Optional extremely slow ambient light movement.
+- Localized illumination around the active music artwork.
+- Subtle vignette to keep attention on the content.
+
+The background must not compete with text or album artwork.
+
+Ambient animation should move slowly and quietly, approximately 12–24 seconds per complete cycle where appropriate.
+
+Do not continuously animate every background layer independently. Use a small number of coordinated effects.
+
+Prevent visible gradient banding. Use suitable rendering techniques and subtle noise only when beneficial and inexpensive.
+
+Avoid constant particles, distracting stars, excessive lens flares, and gaming-style visual clutter.
+
+3.3 Typography
+
+Use a sophisticated, highly legible typographic system.
+
+- Large editorial titles with restrained weight.
+- Medium-weight section headings.
+- Carefully balanced title and artist typography.
+- Compact, readable metadata.
+- Consistent spacing and line height.
+- Clear distinctions between primary and secondary information.
+- Elegant numeric typography for playback time and track duration.
+- Appropriate truncation and multiline behavior for long titles.
+
+Use available system typography or a bundled font only when its license and project integration are appropriate.
+
+Do not imitate proprietary system fonts by distributing unlicensed font files.
+
+Typography must adapt to screen size and system font scaling. Never sacrifice accessibility for a cinematic appearance.
+
+3.4 Spacing and shape language
+
+Create a coherent radius system.
+
+Suggested starting points:
+
+- Small controls: 12–16 dp.
+- Standard cards: 20–24 dp.
+- Featured glass panels: 26–32 dp.
+- Large player artwork containers: 28–36 dp.
+- Floating navigation surfaces: 28–36 dp.
+- Circular playback controls: fully circular.
+
+Use a consistent spacing scale based on 4 dp increments.
+
+Prefer generous negative space, balanced margins, and naturally flowing content.
+
+Avoid a grid of excessively square cards. The application should feel fluid and organic while retaining strong alignment.
+
+04 — LIQUID GLASS MATERIAL ENGINE
+
+Create reusable native Compose components for the visual language rather than implementing every glass surface independently.
+
+Build components such as:
+
+- LiquidGlassSurface
+- LiquidGlassCard
+- LiquidGlassButton
+- LiquidGlassIconButton
+- LiquidGlassNavigationBar
+- LiquidGlassMiniPlayer
+- LiquidGlassSheet
+- LiquidGlassDialog
+- LiquidGlassSlider
+- LiquidGlassChip
+- LiquidGlassArtworkFrame
+- LiquidGlassToast
+- LiquidGlassLoadingIndicator
+
+Use naming consistent with the existing codebase if equivalent components already exist.
+
+4.1 Material composition
+
+Each major glass surface should combine only the layers needed for its visual role:
+
+1. A translucent base tint.
+2. A backdrop blur where supported and performant.
+3. A soft internal luminance gradient.
+4. A subtle top-edge highlight.
+5. A faint lower-edge shadow or reflective border.
+6. A realistic shadow separating the surface from the background.
+7. Optional directional specular lighting.
+8. Carefully clipped rounded corners.
+
+Create convincing depth through overlapping surfaces and lighting rather than merely applying a large blur radius.
+
+The underlying background should remain perceptible through glass where appropriate.
+
+Use restrained white edge highlights, with greater brightness near the light-facing edge and softer falloff elsewhere.
+
+Allow the material to respond to selection, touch, dragging, and elevation.
+
+4.2 Glass physics and reflections
+
+Where practical, create lightweight simulated reflections using gradients and carefully positioned highlight shapes.
+
+Use subtle parallax or pointer/touch-relative lighting only on appropriate elements.
+
+Reflections should follow a consistent virtual light direction. Do not allow each card to have unrelated lighting.
+
+During a press, selected surfaces may temporarily increase their highlight intensity and apparent depth.
+
+During drag interactions, selected glass sheets may follow the finger with a subtle liquid-like response.
+
+On release, surfaces should return smoothly to their resting position.
+
+Do not pretend to perform real-time optical refraction if the implementation only uses a gradient. Simulated reflections should still look sophisticated.
+
+4.3 Backdrop blur requirements
+
+Use native, compatible blur techniques where available.
+
+Prefer localized clipping and small blur regions over full-screen blur.
+
+If reliable live backdrop blur is unavailable on a supported Android version, use a layered translucent surface, subtle gradient, and edge highlights as a graceful fallback.
+
+Do not blur text, album titles, playback controls, or important interactive content.
+
+Do not blur the entire screen continuously.
+
+Avoid expensive nested blur effects and repeated off-screen rendering.
+
+The application must remain smooth on mid-range Android devices.
+
+05 — MOTION DESIGN SYSTEM
+
+Create a centralized motion system with reusable timing, easing, spring, and transition specifications.
+
+Do not scatter arbitrary animation durations throughout the code.
+
+Use native Compose animation APIs where appropriate, including animate*AsState, updateTransition, Animatable, AnimatedVisibility, Crossfade, and suitable navigation transition APIs compatible with the project's existing versions.
+
+Suggested starting motion profiles:
+
+- Instant tactile response: approximately 60–100 ms.
+- Small icon state transition: 120–180 ms.
+- Button press and release: 100–180 ms.
+- Standard content entrance: 220–320 ms.
+- Navigation transition: 300–450 ms.
+- Glass-sheet presentation: 350–550 ms.
+- Artwork morph: 350–600 ms.
+- Large cinematic transitions: 450–700 ms, used sparingly.
+- Ambient movement: 12–24 seconds per cycle.
+
+These values are starting points, not rigid rules. Tune easing, distance, and duration to achieve the intended effect.
+
+Use spring animations with appropriate damping and stiffness for tactile movement. Use smooth, carefully chosen easing curves for controlled transitions.
+
+Avoid making all elements move simultaneously.
+
+Use staggered entrance animations for related content, with short delays of approximately 25–60 ms when they improve hierarchy.
+
+Do not animate every item in a long scrolling list whenever a recomposition occurs.
+
+Do not restart animations unnecessarily when unrelated state changes.
+
+5.1 Motion principles
+
+Every animation must follow these principles:
+
+- Immediate acknowledgment of input.
+- Smooth acceleration and deceleration.
+- Consistent spatial direction.
+- Minimal overshoot for premium interactions.
+- Clear separation between foreground and background movement.
+- No sudden visual jumps.
+- No flicker or abrupt alpha changes.
+- No layout instability.
+- No accidental repeated entrance animation.
+- No motion that obstructs playback controls.
+- No mandatory long animations before an action can complete.
+
+The app should feel alive, not restless.
+
+06 — GLOBAL INTERACTION ANIMATIONS
+
+Implement the following behavior across the application.
+
+6.1 Touch-down response
+
+When a user presses an interactive surface:
+
+- Respond immediately.
+- Scale the surface subtly, typically to approximately 0.97–0.99 of its resting size.
+- Increase the relevant glass highlight.
+- Adjust elevation or shadow slightly.
+- Provide a brief, appropriate haptic tick where supported.
+- Avoid excessive bounce.
+
+6.2 Release response
+
+On release:
+
+- Return smoothly to the original scale.
+- Restore the default lighting.
+- Settle the shadow without a sudden jump.
+- Keep the action responsive even if an animation is still settling.
+
+6.3 Focus and selection
+
+For selectable chips, tabs, playlist rows, and navigation destinations:
+
+- Animate the selection indicator.
+- Use a restrained background morph.
+- Transition icon and text emphasis smoothly.
+- Preserve stable layout dimensions whenever possible.
+- Make the selected state immediately identifiable.
+
+6.4 Disabled controls
+
+Disabled controls must look intentionally inactive.
+
+Use restrained opacity and reduced contrast, not dramatic blur or movement.
+
+Do not provide misleading haptic feedback for an unavailable action.
+
+6.5 Long press
+
+Where long-press behavior is useful:
+
+- Provide a short tactile acknowledgment.
+- Reveal a context menu or additional action.
+- Use a smooth scale or elevation change.
+- Ensure that long press does not interfere with normal tapping or scrolling.
+
+6.6 Drag and reorder
+
+For reorderable playlists or queue items:
+
+- Lift the active item slightly.
+- Increase shadow and edge illumination.
+- Follow the drag gesture.
+- Animate neighboring items out of the way.
+- Use subtle haptic ticks when crossing valid reorder positions where supported.
+- Settle the item naturally when released.
+
+6.7 Double tap
+
+Use double-tap gestures only when they have an unambiguous purpose.
+
+Do not introduce hidden gestures that accidentally trigger playback, navigation, or destructive actions.
+
+07 — HOME SCREEN: CINEMATIC MUSIC DASHBOARD
+
+Transform the Home screen into an immersive, premium music discovery and personal-library experience.
+
+Layout
+
+Create a refined hierarchy containing:
+
+- A compact top header.
+- Su Music branding.
+- A profile or settings action only if appropriate to the existing app.
+- A personalized greeting or editorial heading.
+- Continue Listening.
+- Recently Played.
+- Favorite or pinned playlists.
+- Album and artist collections where available.
+- A persistent mini-player when music is active.
+- A floating or bottom Liquid Glass navigation surface.
+
+Use existing user data wherever available. If the app currently uses local files, prioritize those files rather than fabricated online content.
+
+Home entrance animation
+
+On initial screen entry:
+
+1. Fade in the background environment.
+2. Introduce the header with a short vertical movement.
+3. Reveal the main content using a gentle stagger.
+4. Allow featured artwork to settle into place with a subtle scale animation.
+5. Bring the mini-player into view only when its state requires it.
+6. Introduce the navigation surface with a smooth fade and slight vertical movement.
+
+Do not replay the entire entrance sequence whenever the user returns from another screen unless the transition context genuinely calls for it.
+
+Featured music cards
+
+Each featured card should include:
+
+- Carefully cropped artwork.
+- Rounded corners.
+- A layered glass frame.
+- Appropriate text contrast.
+- A restrained shadow.
+- Optional subtle artwork parallax.
+- An elegant pressed state.
+
+On tap, animate the selected card toward its destination where feasible, preserving the impression that the same content is moving between screens.
+
+Do not use a full-screen blur or a complex transition if it causes dropped frames.
+
+Home scrolling
+
+Use natural scrolling with clear separation between content sections.
+
+Where feasible, apply subtle parallax to decorative background elements rather than moving every foreground component independently.
+
+Headers may collapse or transform as the user scrolls if this improves the existing layout.
+
+Avoid abrupt header resizing, content jumps, or competing nested scrolling.
+
+Empty and loading states
+
+Create polished states for:
+
+- No songs found.
+- No recently played tracks.
+- Empty playlists.
+- Music permission not granted.
+- Library scanning.
+- Recoverable errors.
+
+Use gentle shimmer or a restrained glass placeholder while loading. Never show an endless fake loading animation when the application is idle or has failed.
+
+08 — MUSIC LIBRARY SCREEN
+
+Create a premium music-library experience that remains highly functional with large local music collections.
+
+Support the existing app's available categories, such as Songs, Albums, Artists, and Playlists.
+
+Category transitions
+
+Use animated selected indicators and smooth content transitions.
+
+Avoid rebuilding the entire library whenever a category changes if the existing architecture supports preserving state.
+
+Preserve scroll position where appropriate.
+
+Song rows
+
+Each row should provide:
+
+- Album artwork or a tasteful fallback.
+- Track title.
+- Artist and relevant metadata.
+- Current-playing indicator when applicable.
+- Optional overflow menu.
+- Clear touch feedback.
+
+Use a consistent row height and sufficient touch-target size.
+
+On selection:
+
+- Acknowledge the touch immediately.
+- Highlight the selected row.
+- Transition playback state accurately.
+- Update the mini-player and Now Playing screen consistently.
+
+If the existing player supports queues, integrate with that queue rather than introducing a disconnected playback mechanism.
+
+Active playback
+
+The currently playing track should have a recognizable visual state, such as a restrained accent, animated equalizer bars, or a subtle luminous marker.
+
+Only animate the active track's visualizer.
+
+Pause the visualizer when playback is paused, when it is not visible, or when animation would waste resources.
+
+Do not use a decorative equalizer that claims to represent real audio frequencies unless it is actually connected to audio analysis.
+
+Large collections
+
+Use efficient lazy lists and stable keys.
+
+Avoid loading every artwork bitmap into memory simultaneously.
+
+Avoid restarting all row animations after a minor playback-state update.
+
+09 — SEARCH SCREEN
+
+Build a refined search experience with a strong focus on speed and usability.
+
+Search field
+
+Create a floating or inset Liquid Glass search field with:
+
+- A search icon.
+- Clear placeholder text.
+- An animated focus state.
+- A subtle highlight when active.
+- A clear-text control when appropriate.
+- Correct keyboard behavior.
+- Adequate contrast.
+
+On focus, use a restrained border-light animation and optional subtle expansion.
+
+Do not create a large distracting glow.
+
+Search interactions
+
+Support the search behavior the app actually implements.
+
+Where available:
+
+- Search local tracks.
+- Search artists, albums, and playlists.
+- Display recent searches.
+- Allow a recent query to be selected.
+- Provide a clear empty-results state.
+- Provide a no-query discovery state.
+
+Debounce text input if necessary for performance.
+
+Do not add a network dependency merely to make search look sophisticated.
+
+Results animation
+
+When results change:
+
+- Animate insertion and removal subtly.
+- Avoid flashing the whole screen.
+- Preserve keyboard responsiveness.
+- Keep scrolling fluid.
+- Avoid replaying entrance animations for every keystroke.
+
+10 — NOW PLAYING: THE SIGNATURE EXPERIENCE
+
+This is the emotional centerpiece of Su Music.
+
+It should feel like a private listening room constructed from black glass, reflected light, immersive album artwork, and precision-engineered controls.
+
+10.1 Overall composition
+
+Create a visually balanced composition containing:
+
+- A compact top navigation region.
+- A contextual title such as Now Playing.
+- Large album artwork.
+- Track title and artist.
+- Optional favorite action.
+- Playback progress.
+- Elapsed and remaining or total duration, according to the existing design.
+- Previous, Play/Pause, and Next controls.
+- Shuffle and repeat where supported.
+- Queue or lyrics access only when those features actually exist.
+- An optional connection or output-device indicator where supported.
+
+The central artwork should be the primary visual anchor.
+
+Maintain comfortable spacing around playback controls.
+
+Do not let decorative glass surfaces cover important buttons.
+
+10.2 Album artwork treatment
+
+Use the actual artwork associated with the playing track when available.
+
+Create:
+
+- A beautifully rounded artwork frame.
+- A subtle glass rim.
+- A soft ambient shadow.
+- Restrained background illumination sampled from or derived from the artwork only if implemented safely.
+- A subtle parallax effect where practical.
+- A small amount of depth between artwork, frame, and surrounding surfaces.
+
+Avoid excessively strong glow or overprocessed artwork colors.
+
+10.3 Artwork transition
+
+When the current track changes:
+
+1. Preserve the artwork container's position and overall size.
+2. Transition the old artwork out smoothly.
+3. Introduce the new artwork using a controlled fade and slight scale adjustment.
+4. Update track title and artist with a coordinated text transition.
+5. Update playback progress and duration from the real player state.
+6. Keep playback controls responsive throughout.
+
+Use a shared-element or bounds-transform transition only if the existing navigation implementation supports it reliably.
+
+Do not delay the actual music change while waiting for the visual animation.
+
+10.4 Playback button
+
+The Play/Pause control should be one of the most carefully designed components in the application.
+
+Create a premium circular control with:
+
+- A translucent or subtly luminous surface.
+- A restrained highlight around its edge.
+- A clear, high-contrast icon.
+- A tactile press response.
+- A quick icon morph between Play and Pause where feasible.
+- A subtle scale or spring transition.
+- Haptic feedback appropriate to the action.
+
+The icon must always reflect actual playback state.
+
+Do not let an animation falsely imply that audio started when the player reports an error.
+
+10.5 Previous and Next controls
+
+Use visually secondary controls with clear spacing and comfortable touch targets.
+
+Animate the pressed state and provide a short haptic response where appropriate.
+
+When a track changes, coordinate the artwork and metadata transitions.
+
+Respect the player's actual previous/next behavior, including queue boundaries and track restart rules.
+
+10.6 Progress slider
+
+Design a refined progress control with:
+
+- A thin track.
+- A subtle filled progress segment.
+- A small, precise thumb.
+- A clear active state.
+- Correct elapsed and duration labels.
+
+On touch:
+
+- Increase the thumb's visual prominence slightly.
+- Make the track brighter.
+- Update the displayed seek position.
+- Provide appropriate tactile feedback only when useful.
+
+While dragging, update the visual preview smoothly.
+
+Commit the actual seek according to the player architecture and avoid unnecessarily seeking repeatedly on every tiny pointer movement.
+
+When released, settle the control into its resting state.
+
+Never let the displayed progress drift away from the real player state.
+
+10.7 Secondary controls
+
+Create consistent visual states for shuffle, repeat, favorites, and queue controls.
+
+Selected modes should be immediately recognizable.
+
+Use restrained icon transitions and haptics.
+
+Do not animate unavailable features as though they are working.
+
+10.8 Ambient listening mode
+
+Where practical, introduce a very slow, low-contrast ambient light effect behind the artwork.
+
+The effect may gently respond to playback state or artwork changes.
+
+It must not interfere with reading, seeking, or tapping.
+
+Stop or reduce expensive ambient animation when the screen is not visible, the application is backgrounded, or performance requires it.
+
+11 — MINI-PLAYER
+
+Create a compact, elegant mini-player that feels like a floating piece of black glass.
+
+It should include:
+
+- Small artwork.
+- Track title.
+- Artist name when space permits.
+- Play/Pause.
+- An optional next-track control when appropriate.
+- A subtle playback progress indicator if useful.
+
+Use a rounded glass surface with controlled blur and a soft edge highlight.
+
+On tap, transition into Now Playing.
+
+On Play/Pause, update the actual player without navigating away.
+
+When track metadata changes, crossfade or animate the artwork and text without changing the overall component dimensions unnecessarily.
+
+When dismissed, if dismissal is supported, animate it away smoothly without accidentally stopping playback unless that is the defined behavior.
+
+Integrate the mini-player with the existing bottom navigation and system gesture areas.
+
+Prevent overlap with navigation bars, screen insets, and scrollable content.
+
+12 — BOTTOM NAVIGATION
+
+Design a refined floating Liquid Glass navigation surface.
+
+Use the existing navigation destinations and preserve their functionality.
+
+The surface should include:
+
+- A translucent black material.
+- Rounded geometry.
+- A subtle edge highlight.
+- Clear active and inactive icons.
+- Carefully balanced spacing.
+- Appropriate labels when useful.
+- Safe-area and gesture-inset handling.
+
+When the active destination changes:
+
+- Animate the selected indicator.
+- Transition icon emphasis.
+- Apply a small, controlled spring.
+- Provide subtle haptic feedback where appropriate.
+- Keep the animation short enough that navigation feels immediate.
+
+If using a moving glass indicator, animate its position and size smoothly.
+
+Do not cause the whole navigation bar to jump when labels or selected states change.
+
+Do not place controls too close to the screen edge.
+
+13 — PLAYLISTS
+
+Create a luxurious playlist browsing and management experience.
+
+Playlist cards should combine artwork, carefully spaced text, and a restrained glass treatment.
+
+For playlist creation, use a clean native dialog or bottom sheet.
+
+For playlist editing, support the existing capabilities and avoid introducing fake operations.
+
+Where supported, animate:
+
+- Opening and closing playlist details.
+- Adding or removing tracks.
+- Playlist artwork updates.
+- Reordering.
+- Favorite changes.
+- Context-menu presentation.
+
+Use short, controlled transitions.
+
+Provide clear confirmation for destructive actions.
+
+Never remove a playlist or track merely because an animation was triggered.
+
+Preserve playlist data and existing persistence behavior.
+
+14 — SETTINGS AND PERMISSIONS
+
+Create a consistent premium settings screen.
+
+Use well-organized sections, clear labels, meaningful descriptions, and familiar Android interaction patterns.
+
+Where relevant, include existing settings for:
+
+- Theme.
+- Audio-library permissions.
+- Playback behavior.
+- Audio output information.
+- Haptic preferences.
+- Animation preferences.
+- App information.
+
+Do not invent settings that have no implementation.
+
+If a permission is missing, explain its purpose and provide a clear action to request it.
+
+Do not repeatedly request a permission after the user has declined it.
+
+Do not attempt to bypass Android permission rules.
+
+Use a restrained animation for switches and selected options, while respecting standard accessibility behavior.
+
+15 — GLASS BOTTOM SHEETS, MENUS, AND DIALOGS
+
+All sheets, menus, and dialogs must belong to the same visual system.
+
+Bottom sheets
+
+When presented:
+
+- Fade and scale the background scrim appropriately.
+- Slide the sheet from the bottom with a smooth spring.
+- Give the sheet a translucent surface.
+- Use rounded upper corners.
+- Include a subtle top-edge highlight.
+- Support the standard dismissal gestures where appropriate.
+
+When dismissed, reverse the transition naturally.
+
+Do not make the sheet difficult to close.
+
+Do not intercept system Back navigation incorrectly.
+
+Context menus
+
+Use concise, clearly labeled actions.
+
+Present menus near the relevant item where practical.
+
+Animate the menu into place with a restrained scale and fade.
+
+Do not allow menus to extend beyond screen boundaries.
+
+Dialogs
+
+Use clear hierarchy and appropriate button emphasis.
+
+Do not use dramatic 3D rotation for routine confirmation dialogs.
+
+Critical confirmations should prioritize clarity over spectacle.
+
+16 — THREE-DIMENSIONAL DEPTH AND SPATIAL DESIGN
+
+The application must feel dimensional, not like a flat interface with blur added on top.
+
+Use the following techniques selectively:
+
+- Layered elevation.
+- Realistic cast shadows.
+- Simulated specular highlights.
+- Overlapping translucent surfaces.
+- Subtle parallax.
+- Controlled scale and translation.
+- Perspective-like artwork presentation.
+- Spatially coherent lighting.
+- Foreground/background separation.
+- Smooth expansion and collapse transitions.
+
+Use native drawing, Compose graphics, and compatible rendering techniques before adding a complex 3D engine.
+
+For artwork, cards, or featured elements, consider a subtle perspective effect during interaction.
+
+Any perspective transformation must be restrained, correctly clipped, and visually stable.
+
+Do not use extreme rotations that distort text or make controls difficult to operate.
+
+Do not introduce an OpenGL, Vulkan, or third-party 3D engine merely for decoration unless there is a clear benefit and a safe integration path.
+
+The goal is convincing depth with minimal performance cost.
+
+17 — HAPTIC FEEDBACK SYSTEM
+
+Implement a centralized haptic feedback layer for native Android.
+
+Use the appropriate platform or Compose-supported haptic APIs available in the current project and supported Android versions.
+
+Where supported, use semantic feedback patterns rather than triggering the same strong vibration for every event.
+
+Suggested haptic categories:
+
+- Light selection tick.
+- Soft button press.
+- Successful state change.
+- Slider interaction.
+- Drag/reorder threshold.
+- Toggle activation.
+- Meaningful error feedback.
+
+Keep haptics brief and restrained.
+
+Use a consistent intensity hierarchy.
+
+Avoid long or repeated vibration for ordinary navigation.
+
+Respect the user's system haptic settings and provide an in-app option to disable optional haptics if appropriate.
+
+Do not add an unnecessary vibration permission if the selected API and application behavior do not require it.
+
+Handle unsupported hardware gracefully.
+
+A preview or emulator may not reproduce real device haptics; validate this on physical hardware.
+
+Haptic feedback must never block playback, navigation, or UI rendering.
+
+18 — ICONOGRAPHY AND MICRO-INTERACTIONS
+
+Use a consistent, high-quality icon family already available in the project or a suitable licensed dependency.
+
+Do not mix unrelated icon styles.
+
+Create subtle transitions for:
+
+- Play and Pause.
+- Favorite and Unfavorite.
+- Search focus and clearing.
+- Shuffle activation.
+- Repeat mode.
+- Expand and collapse.
+- Menu presentation.
+- Queue selection.
+- Selected navigation destination.
+- Volume or output state where applicable.
+- Loading and retry.
+- Successful and failed operations.
+
+Prefer morphing, rotation of small elements, controlled scale, or short fades.
+
+Do not animate icons through complicated paths if a simpler transition looks better.
+
+Do not use emoji as primary interface icons.
+
+Every icon must remain recognizable at its displayed size.
+
+19 — LOADING, EMPTY, ERROR, AND EDGE STATES
+
+Treat these states as part of the finished product rather than afterthoughts.
+
+Design polished states for:
+
+- Initial app launch.
+- Music-library scanning.
+- Permission denial.
+- No music found.
+- Artwork unavailable.
+- Empty playlist.
+- Empty search results.
+- Playback failure.
+- Missing or unreadable audio file.
+- Unsupported file format.
+- Interrupted audio.
+- No previous or next track.
+- Long song title.
+- Missing artist metadata.
+- Missing album artwork.
+- Device rotation or window resizing, where supported.
+- Returning from system settings.
+- Restoring the application after process recreation.
+
+Use restrained transitions and helpful messaging.
+
+Never leave the user trapped behind a perpetual shimmer.
+
+Never present fake progress for a task that is not progressing.
+
+20 — PERFORMANCE ENGINEERING
+
+Visual excellence is meaningless if the application stutters.
+
+The app must remain responsive during scrolling, navigation, artwork changes, and playback.
+
+Use the following requirements:
+
+1. Use LazyColumn, LazyRow, or suitable lazy containers for large collections.
+2. Use stable keys for repeated list items.
+3. Avoid unnecessary recompositions.
+4. Keep expensive calculations out of frequently recomposed UI.
+5. Avoid repeated bitmap decoding on the main thread.
+6. Cache artwork appropriately and respect memory limits.
+7. Avoid creating unnecessary Animatable objects during recomposition.
+8. Avoid multiple simultaneous full-screen blur passes.
+9. Limit continuous animations to a small number of visible elements.
+10. Pause animations when the relevant screen is not visible.
+11. Use lifecycle-aware state collection.
+12. Avoid blocking the main thread with file scanning, database operations, or artwork processing.
+13. Avoid unnecessary wake locks, background services, and high-frequency timers.
+14. Use appropriate image sizes and clipping.
+15. Test the most animation-heavy screens on an ordinary Android device.
+16. Ensure that navigation and playback controls remain responsive during animation.
+17. Avoid memory leaks from animations, listeners, or long-lived coroutine scopes.
+18. Preserve battery life when the application is idle or running in the background.
+
+Do not claim a specific frame rate without measuring it.
+
+Aim for smooth 60 Hz interaction on supported devices. Higher refresh rates may be supported where the device and system allow them.
+
+Avoid chasing maximum visual effects at the expense of consistent frame pacing.
+
+21 — ACCESSIBILITY AND USER CONTROL
+
+The premium visual design must remain usable by everyone.
+
+- Maintain adequate text contrast.
+- Provide meaningful content descriptions.
+- Preserve large touch targets.
+- Support Android font scaling.
+- Ensure controls are discoverable.
+- Keep TalkBack navigation sensible.
+- Respect system reduced-motion or animation-related settings where detectable.
+- Provide a way to reduce optional ambient animation if appropriate.
+- Never communicate playback state using color alone.
+- Ensure that blur does not destroy text legibility.
+- Do not rely on haptic feedback as the only indication of success.
+- Ensure that system Back, keyboard navigation, and accessibility actions work correctly.
+
+When reduced motion is requested, replace elaborate movement with short fades or simple state changes while preserving functionality.
+
+22 — RESPONSIVE LAYOUT AND SYSTEM INTEGRATION
+
+Adapt the design to actual device dimensions and window insets.
+
+Support small phones without clipping important controls.
+
+Handle display cutouts, gesture navigation, keyboard visibility, and system bars appropriately.
+
+Ensure that the mini-player and navigation bar do not cover the final item in a scrolling list.
+
+Avoid hardcoded screen dimensions.
+
+Use adaptive layouts and appropriate Compose modifiers.
+
+Keep text and touch targets comfortable on different Android screen densities.
+
+Do not draw under system bars unless the resulting layout is intentional and correctly handles insets.
+
+23 — IMPLEMENTATION ARCHITECTURE
+
+Keep the existing Kotlin and Jetpack Compose architecture wherever practical.
+
+Create reusable design tokens for:
+
+- Colors.
+- Surface transparency.
+- Corner radii.
+- Elevation.
+- Spacing.
+- Typography.
+- Motion durations.
+- Easing curves.
+- Spring parameters.
+- Haptic categories.
+
+Use a clear separation between UI state and rendering.
+
+Keep existing ViewModels, repositories, navigation, and audio-player state as the source of truth.
+
+Use immutable UI state where appropriate.
+
+Use stable Compose keys.
+
+Ensure that animation state is not incorrectly treated as persistent application data.
+
+Do not store transient animation progress in the music database.
+
+Avoid unnecessary new dependencies.
+
+If a dependency is needed, verify compatibility with the project's Android Gradle Plugin, Kotlin, Compose, and minimum SDK versions before modifying configuration.
+
+Do not migrate the project to another framework.
+
+Do not replace native Android code with a web wrapper.
+
+Do not change audio playback architecture merely to support a visual animation.
+
+24 — IMPLEMENTATION PRIORITY
+
+Work in this sequence.
+
+Phase A: Audit and foundation
+
+- Inspect the existing project.
+- Identify all existing screens.
+- Record the current navigation structure.
+- Establish the shared theme and design tokens.
+- Implement the core glass material components.
+- Implement the centralized motion system.
+- Implement the haptic abstraction.
+- Confirm that the application still builds.
+
+Phase B: Primary visual redesign
+
+Redesign the following existing screens in order:
+
+1. Home.
+2. Now Playing.
+3. Mini-player.
+4. Music Library.
+5. Search.
+6. Playlists.
+7. Settings.
+8. Existing dialogs, menus, and bottom sheets.
+
+Preserve every working interaction.
+
+Phase C: Motion integration
+
+Add the appropriate animations to:
+
+- Initial screen entrance.
+- Navigation transitions.
+- Card selection.
+- Song selection.
+- Artwork replacement.
+- Play/Pause.
+- Progress seeking.
+- Favorite state.
+- Playlist operations.
+- Search focus.
+- Search results.
+- Bottom-sheet presentation.
+- Dialog presentation.
+- Loading and error states.
+- Scroll-dependent decorative effects.
+- Relevant haptic interactions.
+
+Phase D: Performance and correctness
+
+- Check Compose recomposition behavior.
+- Check list performance.
+- Check artwork loading.
+- Check animation cancellation.
+- Check lifecycle behavior.
+- Check accessibility.
+- Check screen insets.
+- Check the existing audio functionality.
+- Run available build and test tasks.
+
+Phase E: Final polish
+
+Inspect the actual rendered application, not just the source code.
+
+Correct spacing, typography, clipping, contrast, shadow quality, alignment, animation timing, and touch feedback.
+
+Repeat the inspection until the design is coherent and the build remains healthy.
+
+25 — FINAL QUALITY ASSURANCE CHECKLIST
+
+Before declaring completion, verify as many of these items as the available environment allows.
+
+[ ] The original Su Music project was updated instead of creating a disconnected replacement.
+
+[ ] Existing working functionality has been preserved.
+
+[ ] The design consistently uses a premium black and smoked-glass palette.
+
+[ ] Glass components have coherent translucency, highlights, shadows, and depth.
+
+[ ] The Home screen is polished and navigable.
+
+[ ] The Now Playing screen is visually exceptional and functional.
+
+[ ] The mini-player integrates correctly with playback state.
+
+[ ] Library browsing remains usable with large collections.
+
+[ ] Search remains responsive.
+
+[ ] Playlists and settings retain their existing behavior.
+
+[ ] Navigation transitions are smooth and consistent.
+
+[ ] Pressed, selected, disabled, loading, and error states are designed.
+
+[ ] Album artwork transitions do not interrupt audio.
+
+[ ] Haptics are implemented where supported and are not excessive.
+
+[ ] Optional ambient animations respect lifecycle and performance constraints.
+
+[ ] Important controls remain legible over glass surfaces.
+
+[ ] The interface adapts to small Android screens.
+
+[ ] Accessibility semantics are preserved.
+
+[ ] No unnecessary permission requests were added.
+
+[ ] No unnecessary paid service, API key, or backend was introduced.
+
+[ ] The project compiles successfully, if the environment provides a usable build system.
+
+[ ] Existing audio functionality was checked after the redesign.
+
+[ ] Remaining limitations are documented honestly.
+
+26 — FINAL EXECUTION INSTRUCTIONS
+
+Now inspect the current Su Music project and begin implementing this transformation directly.
+
+Do not answer with another design proposal.
+
+Do not generate a new application from scratch.
+
+Do not stop after modifying only the Home screen.
+
+Do not merely add blur to the existing interface and call it Liquid Glass.
+
+Do not add animations indiscriminately just to increase their number.
+
+Use professional judgment to determine where motion, depth, haptics, reflections, and transitions genuinely improve the experience.
+
+Prioritize visual consistency, tactile quality, refined detail, actual functionality, and performance.
+
+If the available environment imposes a genuine limitation, implement the best compatible alternative and report the limitation rather than pretending the feature exists.
+
+After each major phase, verify that the project remains intact and compilable.
+
+At the end, provide a concise implementation report covering:
+
+1. Screens redesigned.
+2. Glass components created or improved.
+3. Animations implemented.
+4. Haptic interactions implemented.
+5. Existing functionality preserved.
+6. Build and test results.
+7. Known limitations.
+8. The next recommended step after the UI redesign.
+
+Begin by auditing the current project, then implement the complete UI transformation. The objective is a cohesive, exceptionally refined, Apple-inspired Liquid Glass experience that feels genuinely premium on a real Android phone.

@@ -1,0 +1,6 @@
+{
+  "name": "Su Music",
+  "description": "Native Android music player featuring premium iOS-inspired Liquid Glass design, local music playback, playlists, equalizer, and Jetpack Compose architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
